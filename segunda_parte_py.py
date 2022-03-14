@@ -21,14 +21,14 @@ superficieY = 25
 posInicioViga = 10
 alturaViga = 15 #no puede ser mayor o igual a superficieY
 anchoViga = 5   #no puede ser mayor o igual a superficieX
-h = 1
-H = 4 #h de la ecuacion discretizada
+h = 4
+
 
 u = zeros((superficieX, superficieY), float)                # arreglo para la funcion corriente  
 
 V0 = 1.0                                            # velocidad inicial
 
-iter = 100   #converge mucho mas rapido ahora vs la primera practica...
+iter = 5   #converge mucho mas rapido ahora vs la primera practica...
 result = zeros((superficieY,superficieX ), float)         #arreglo para imprimir u
 
 
@@ -78,13 +78,13 @@ def ecuaciones():
       ecuacion= zeros(superficieX*superficieY)
      
       if i < superficieY-1:
-          ecuacion[posicion(i+1,j)]=(1-H/2)
+          ecuacion[posicion(i+1,j)]=(1-h/2)
       if i > 0:
-          ecuacion[posicion(i-1,j)]=(1-H/2) 
+          ecuacion[posicion(i-1,j)]=(1-h/2) 
       if j < superficieX-1:
-          ecuacion[posicion(i,j+1)]=(1-H/2)
+          ecuacion[posicion(i,j+1)]=(1-h/2)
       if j > 0:
-          ecuacion[posicion(i,j-1)]=(1-H/2) 
+          ecuacion[posicion(i,j-1)]=(1-h/2) 
 
       ecuacion[posicion(i,j)]=-4 #llena de 4 la posicion (0,0) , (1,1) , (2,2) ,..., (n,n)
       ecuaciones.append(ecuacion)
